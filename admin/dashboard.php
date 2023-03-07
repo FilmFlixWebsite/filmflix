@@ -1,11 +1,13 @@
 <?php 
 	   // menghubungkan dengan koneksi
         include "../config/koneksi.php";
+        require "../config/functions.php";
 		// mengaktifkan session php
         session_start();
         if($_SESSION['status'] !="login"){
             header("location:../");
         }
+        $film = mysqli_query($con, "SELECT * FROM all_movielist");
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,11 +69,18 @@
                 </tr>
               </thead>
               <tbody>
-                <?php
-                  if (mysqli_affected_rows($con) != 0) {
-                    while ()
-                  }
-                ?>
+                <?php $i = 1; ?>
+                <?php foreach ($film as $row) : ?>
+                  <tr>
+                  <td><?= $row["name"];?></td>
+                  <td><?= $row["releaseDate"];?></td>
+                  <td><?= $row["duration"];?></td>
+                  <td><?= $row["stars"];?></td>
+                  <td><?= $row["director"];?></td>
+                  <td><?= $row["genre"];?></td>
+                  <td><a href='<?= $row['linkDownload'  ] ?>' target="_blank">Link</a></td>
+                  </tr>
+                <?php endforeach;?>
               </tbody>
             </table>
             </div>
