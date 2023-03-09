@@ -59,7 +59,9 @@ if(isset($_POST["submit"])) {
     $pembuatFilm = $_POST["filmDirector"];
     $genre = implode(',', $_POST['genre']); 
     $linkDwnld = $_POST["downloadLink"];
-    $query = "INSERT INTO all_movielist VALUES ('', '$namaFilm', '$tglRilis', '$durasiFilm', '$bintangFilm', '$pembuatFilm', '$genre', '$linkDwnld')";
+    $coverImg = $_POST['imgCover'];
+    $desk = $_POST['description'];
+    $query = "INSERT INTO all_movielist VALUES ('', '$namaFilm', '$tglRilis', '$durasiFilm', '$bintangFilm', '$pembuatFilm', '$genre', '$linkDwnld','$coverImg','$desk')";
     mysqli_query($con, $query);
     if (mysqli_affected_rows($con) > 0) {
         echo "Berhasil";
@@ -192,12 +194,19 @@ if(isset($_POST["submit"])) {
                 </div>
                 <div class="form-group row">
                     <label for="customFile" class="col-sm-2 col-form-label">Image Cover</label>
+                    <div class="col-sm-10 d-flex align-items-center">
+                        <input type="file" name="imgCover" id="imgCover">
+                    </div>
+                </div>
+                <div class="form-grup row">
+                    <label for="description" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                        <input type="file" name="imgCover" class="form-control" id="imgCover">
+                        <textarea class="form-control" name="description" id="description" cols="30" rows="10" style="resize:none;"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-10 d-flex justify-content-md-between">
+                    <label for="submit" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10 h-25 p-3 d-flex justify-content-around">
                         <button class="btn btn-danger" onclick="clearForm()">Clear</button>
                         <button type="submit" id="submit" name="submit" class="btn btn-primary">Add</button>
                     </div>

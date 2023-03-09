@@ -66,6 +66,8 @@
                   <th scope="col">Director</th>
                   <th scope="col">Genre</th>
                   <th scope="col">Link Download</th>
+                  <th scope="col">Image Cover</th>
+                  <th scope="col">Description</th>
                 </tr>
               </thead>
               <tbody>
@@ -78,7 +80,9 @@
                   <td><?= $row["stars"];?></td>
                   <td><?= $row["director"];?></td>
                   <td><?= $row["genre"];?></td>
-                  <td><a href='<?= $row['linkDownload'  ] ?>' target="_blank">Link</a></td>
+                  <td><a href='<?= $row['linkDownload'] ?>' target="_blank">Link</a></td>
+                  <td><?= "<img src='imageCover/$row[imgCover]'>" ?></td>
+                  <td><?= $row['description'];?></td>
                   </tr>
                 <?php endforeach;?>
               </tbody>
